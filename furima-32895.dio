@@ -37,7 +37,7 @@
                 <mxCell id="52" value="street addresses" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="-20" y="680" width="300" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="54" value="postal_code (integer型,NOTNULL)&#10; (integer型,NOTNULL)&#10;municipality (string型,NOTNULL)&#10;address (string型,NOTNULL)&#10;building_name (string型)&#10;phone_number (string型,NOTNULL)&#10;purchase_record (references型)" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=14;" parent="52" vertex="1">
+                <mxCell id="54" value="postal_code (string型,NOTNULL)&#10;shipping_area_id (integer型,NOTNULL)&#10;municipality (string型,NOTNULL)&#10;address (string型,NOTNULL)&#10;building_name (string型)&#10;phone_number (string型,NOTNULL)&#10;purchase_record (references型)" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=14;" parent="52" vertex="1">
                     <mxGeometry y="26" width="300" height="154" as="geometry"/>
                 </mxCell>
                 <mxCell id="59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=14;startArrow=ERone;startFill=0;endArrow=ERone;endFill=0;strokeWidth=3;" parent="1" source="43" target="51" edge="1">
