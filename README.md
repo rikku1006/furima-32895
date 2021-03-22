@@ -5,7 +5,7 @@
 | nickname           | string   | null: false              |
 | email              | string   | null: false, unique: true|
 | encrypted_password | string   | null: false              |
-| frist_name         | string   | null: false              |
+| first_name         | string   | null: false              |
 | last_name          | string   | null: false              |
 | kana_first_name    | string   | null: false              |
 | kana_last_name     | string   | null: false              |
