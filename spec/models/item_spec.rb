@@ -11,11 +11,11 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
       it 'priceが、半角数字であれば登録できる' do
-        @item.price = '1111'
+        @item.price = 1111
         expect(@item).to be_valid
       end
       it 'priceが、300~9999999の範囲内であれば登録できる' do
-        @item.price = '1111'
+        @item.price = 1111
         expect(@item).to be_valid
       end
     end
@@ -83,7 +83,6 @@ RSpec.describe Item, type: :model do
       it 'days_to_ship_idが1を選択すると登録できない' do
         @item.days_to_ship_id = 1
         @item.valid?
-        binding.pry
         expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
       end
       it 'priceが、空だと登録できない' do
@@ -92,14 +91,34 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが、300~9999999の範囲内でないと登録できない' do
-        @item.price = '1'
+        @item.price = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Price  Out of setting range')
+      end
+      it 'priceが、10000000以上では登録できない' do
+        @item.price = 10000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price  Out of setting range")
       end
       it 'priceが、半角数字出ないと登録できない' do
         @item.price = '１１１１'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Half-width number')
+      end
+      it 'priceが、半角英数字混合では登録できない' do
+        @item.price = '111１１１'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price Half-width number")
+      end
+      it 'priceが、半角英字のみでは登録できない' do
+        @item.price = 'gjgjgjgj'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price Half-width number")
+      end
+      it 'priceが、全角文字では登録できない' do
+        @item.price = 'あああああ'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price Half-width number")
       end
       it 'userが、紐付いていないと登録できない' do
         @item.user = nil
