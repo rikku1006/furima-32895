@@ -43,7 +43,7 @@ RSpec.describe Item, type: :model do
       it 'category_idが、1を選択すると登録できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
       it 'product_condition_idが、空だと登録できない' do
         @item.product_condition_id = ''
@@ -53,7 +53,7 @@ RSpec.describe Item, type: :model do
       it 'product_condition_idが、1を選択すると登録できない' do
         @item.product_condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Product condition must be other than 1")
+        expect(@item.errors.full_messages).to include('Product condition must be other than 1')
       end
       it 'pay_for_shipping_idが、空だと登録できない' do
         @item.pay_for_shipping_id = ''
@@ -63,7 +63,7 @@ RSpec.describe Item, type: :model do
       it 'pay_for_shipping_idが、1を選択すると登録できない' do
         @item.pay_for_shipping_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Pay for shipping must be other than 1")
+        expect(@item.errors.full_messages).to include('Pay for shipping must be other than 1')
       end
       it 'shipping_area_idが、空だと登録できない' do
         @item.shipping_area_id = ''
@@ -73,7 +73,7 @@ RSpec.describe Item, type: :model do
       it 'shipping_area_idが、1を選択すると登録できない' do
         @item.shipping_area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
+        expect(@item.errors.full_messages).to include('Shipping area must be other than 1')
       end
       it 'days_to_ship_idが、空だと登録できない' do
         @item.days_to_ship_id = ''
@@ -83,7 +83,7 @@ RSpec.describe Item, type: :model do
       it 'days_to_ship_idが1を選択すると登録できない' do
         @item.days_to_ship_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
+        expect(@item.errors.full_messages).to include('Days to ship must be other than 1')
       end
       it 'priceが、空だと登録できない' do
         @item.price = ''
@@ -96,9 +96,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price  Out of setting range')
       end
       it 'priceが、10000000以上では登録できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price  Out of setting range")
+        expect(@item.errors.full_messages).to include('Price  Out of setting range')
       end
       it 'priceが、半角数字出ないと登録できない' do
         @item.price = '１１１１'
@@ -108,17 +108,17 @@ RSpec.describe Item, type: :model do
       it 'priceが、半角英数字混合では登録できない' do
         @item.price = '111１１１'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Half-width number")
+        expect(@item.errors.full_messages).to include('Price Half-width number')
       end
       it 'priceが、半角英字のみでは登録できない' do
         @item.price = 'gjgjgjgj'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Half-width number")
+        expect(@item.errors.full_messages).to include('Price Half-width number')
       end
       it 'priceが、全角文字では登録できない' do
         @item.price = 'あああああ'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Half-width number")
+        expect(@item.errors.full_messages).to include('Price Half-width number')
       end
       it 'userが、紐付いていないと登録できない' do
         @item.user = nil
