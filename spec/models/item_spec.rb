@@ -40,25 +40,51 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
+      it 'category_idが、1を選択すると登録できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
       it 'product_condition_idが、空だと登録できない' do
         @item.product_condition_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Product condition can't be blank")
+      end
+      it 'product_condition_idが、1を選択すると登録できない' do
+        @item.product_condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Product condition must be other than 1")
       end
       it 'pay_for_shipping_idが、空だと登録できない' do
         @item.pay_for_shipping_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Pay for shipping can't be blank")
       end
+      it 'pay_for_shipping_idが、1を選択すると登録できない' do
+        @item.pay_for_shipping_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Pay for shipping must be other than 1")
+      end
       it 'shipping_area_idが、空だと登録できない' do
         @item.shipping_area_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping area can't be blank")
       end
+      it 'shipping_area_idが、1を選択すると登録できない' do
+        @item.shipping_area_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
+      end
       it 'days_to_ship_idが、空だと登録できない' do
         @item.days_to_ship_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship can't be blank")
+      end
+      it 'days_to_ship_idが1を選択すると登録できない' do
+        @item.days_to_ship_id = 1
+        @item.valid?
+        binding.pry
+        expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
       end
       it 'priceが、空だと登録できない' do
         @item.price = ''
