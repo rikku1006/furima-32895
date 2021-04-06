@@ -19,7 +19,8 @@ class Item < ApplicationRecord
       validates :shipping_area_id
       validates :days_to_ship_id
     end
-    validates :price,                  numericality: { only_integer: true, message: 'Half-width number' }
-    validates :price,                  numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: ' Out of setting range' }
+    validates :price, numericality: { only_integer: true, message: 'Half-width number' }
+    validates :price,
+              numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: ' Out of setting range' }
   end
 end
