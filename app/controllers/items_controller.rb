@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :move_to_index]
   before_action :move_to_index, only: [:edit, :update]
 
   def index
@@ -9,7 +10,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
-
+  
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -18,22 +19,19 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-
+  
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
-      if @item.update(item_params)
-        redirect_to item_path(@item.id)
-      else
-        render :edit
-      end
+    if @item.update(item_params)
+      redirect_to item_path(@item.id)
+    else
+      render :edit
+    end
   end
 
   private
@@ -43,10 +41,14 @@ class ItemsController < ApplicationController
                                  :pay_for_shipping_id, :shipping_area_id, :days_to_ship_id, :price).merge(user_id: current_user.id)
   end
 
-  def move_to_index
+  def set_item
     @item = Item.find(params[:id])
+  end
+  
+  def move_to_index
     unless current_user == @item.user
       redirect_to action: :index
     end
   end
+
 end
