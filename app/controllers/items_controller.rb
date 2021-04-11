@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
-  
+
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-  
+
   def show
   end
 
@@ -36,9 +36,7 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-      if item.destroy
-        redirect_to root_path
-      end
+    redirect_to root_path if item.destroy
   end
 
   private
@@ -51,11 +49,8 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-  
-  def move_to_index
-    unless current_user == @item.user
-      redirect_to action: :index
-    end
-  end
 
+  def move_to_index
+    redirect_to action: :index unless current_user == @item.user
+  end
 end
