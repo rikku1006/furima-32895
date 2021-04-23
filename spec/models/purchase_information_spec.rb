@@ -35,12 +35,12 @@ RSpec.describe PurchaseInformation, type: :model do
       it 'postal_codeが、全角数字だと保存できない' do
         @purchase_information.postal_code = '１１１−１１１１'
         @purchase_information.valid?
-        expect(@purchase_information.errors.full_messages).to include("Postal code Input correctly")
+        expect(@purchase_information.errors.full_messages).to include('Postal code Input correctly')
       end
       it 'postal_codeに、ハイフンが含まれていないと登録できない' do
         @purchase_information.postal_code = '1111111'
         @purchase_information.valid?
-        expect(@purchase_information.errors.full_messages).to include("Postal code Input correctly")
+        expect(@purchase_information.errors.full_messages).to include('Postal code Input correctly')
       end
       it 'shipping_area_idが、空だと登録できない' do
         @purchase_information.shipping_area_id = ''
@@ -50,7 +50,7 @@ RSpec.describe PurchaseInformation, type: :model do
       it 'shipping_area_idが、1を選択すると登録できない' do
         @purchase_information.shipping_area_id = 1
         @purchase_information.valid?
-        expect(@purchase_information.errors.full_messages).to include("Shipping area Prefecture Select")
+        expect(@purchase_information.errors.full_messages).to include('Shipping area Prefecture Select')
       end
       it 'municipalityが、空だと登録できない' do
         @purchase_information.municipality = ''
@@ -70,12 +70,12 @@ RSpec.describe PurchaseInformation, type: :model do
       it 'phone_numberが、全角数字だと登録できない' do
         @purchase_information.phone_number = '０００００００００００'
         @purchase_information.valid?
-        expect(@purchase_information.errors.full_messages).to include("Phone number Input only number")
+        expect(@purchase_information.errors.full_messages).to include('Phone number Input only number')
       end
       it 'phone_numberが、12桁以上では登録できない' do
-        @purchase_information.phone_number = 111111111111
+        @purchase_information.phone_number = 111_111_111_111
         @purchase_information.valid?
-        expect(@purchase_information.errors.full_messages).to include("Phone number Input only number")
+        expect(@purchase_information.errors.full_messages).to include('Phone number Input only number')
       end
       it 'tokenが、空だと登録できない' do
         @purchase_information.token = nil

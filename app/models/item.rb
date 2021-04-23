@@ -9,7 +9,6 @@ class Item < ApplicationRecord
   belongs_to :shipping_area
   belongs_to :days_to_ship
 
-
   with_options presence: true do
     validates :image
     validates :product_name

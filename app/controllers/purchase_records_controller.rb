@@ -9,23 +9,25 @@ class PurchaseRecordsController < ApplicationController
 
   def create
     @purchase_information = PurchaseInformation.new(purchase_information_params)
-      if @purchase_information.valid?
-        pay_item
-        @purchase_information.save
-        redirect_to root_path
-      else
-        render :index
-      end
+    if @purchase_information.valid?
+      pay_item
+      @purchase_information.save
+      redirect_to root_path
+    else
+      render :index
+    end
   end
 
   private
-  
+
   def purchase_information_params
-    params.require(:purchase_information).permit(:postal_code, :shipping_area_id, :municipality, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:purchase_information).permit(:postal_code, :shipping_area_id, :municipality, :address, :building_name, :phone_number).merge(
+      user_id: current_user.id, item_id: params[:item_id], token: params[:token]
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: purchase_information_params[:token],
