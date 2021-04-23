@@ -21,6 +21,10 @@ RSpec.describe PurchaseInformation, type: :model do
         @purchase_information.phone_number = '00000000000'
         expect(@purchase_information).to be_valid
       end
+      it 'building_nameが、空でも登録できる' do
+        @purchase_information.building_name = ''
+        expect(@purchase_information).to be_valid
+      end
     end
     context '登録できない時' do
       it 'postal_codeが、空では登録できない' do
@@ -71,7 +75,17 @@ RSpec.describe PurchaseInformation, type: :model do
       it 'tokenが、空だと登録できない' do
         @purchase_information.token = nil
         @purchase_information.valid?
-        expect(@purchase_information.errors.full_messages).to include()
+        expect(@purchase_information.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'user_idが、空だと登録できない' do
+        @purchase_information.user_id = nil
+        @purchase_information.valid?
+        expect(@purchase_information.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが、空だと登録できない' do
+        @purchase_information.item_id = nil
+        @purchase_information.valid?
+        expect(@purchase_information.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

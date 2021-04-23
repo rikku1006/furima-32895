@@ -10,6 +10,8 @@ class PurchaseInformation
     validates :address
     validates :phone_number,             numericality: {only_integer: true, message: "Input only number"}
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   def save
