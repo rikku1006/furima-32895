@@ -1,8 +1,8 @@
 class PurchaseRecordsController < ApplicationController
-  before_action :set_item, only: [:index, :create, :move_to_index, :sold_out_item_move_to_index]
-  before_action :authenticate_user!, only: [:index]
-  before_action :move_to_index, only: [:index]
-  before_action :sold_out_item_move_to_index, only: [:index]
+  before_action :set_item, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :move_to_index, only: [:index, :create]
+  before_action :sold_out_item_move_to_index, only: [:index, :create]
   def index
     @purchase_information = PurchaseInformation.new
   end
@@ -42,6 +42,6 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def sold_out_item_move_to_index
-    redirect_to root_path if current_user && @item.purchase_record.present?
+    redirect_to root_path if @item.purchase_record.present?
   end
 end

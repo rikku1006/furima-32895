@@ -8,7 +8,7 @@ class PurchaseInformation
     validates :shipping_area_id,         numericality: { other_than: 1, message: "Prefecture Select" }
     validates :municipality
     validates :address
-    validates :phone_number,             numericality: {only_integer: true, message: "Input only number"}
+    validates :phone_number,             format: { with: /\A\d{1,11}\z/, message: "Input only number" }
     validates :token
     validates :user_id
     validates :item_id

@@ -72,6 +72,11 @@ RSpec.describe PurchaseInformation, type: :model do
         @purchase_information.valid?
         expect(@purchase_information.errors.full_messages).to include("Phone number Input only number")
       end
+      it 'phone_numberが、12桁以上では登録できない' do
+        @purchase_information.phone_number = 111111111111
+        @purchase_information.valid?
+        expect(@purchase_information.errors.full_messages).to include("Phone number Input only number")
+      end
       it 'tokenが、空だと登録できない' do
         @purchase_information.token = nil
         @purchase_information.valid?
