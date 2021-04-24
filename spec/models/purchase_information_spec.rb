@@ -73,7 +73,7 @@ RSpec.describe PurchaseInformation, type: :model do
         expect(@purchase_information.errors.full_messages).to include('Phone number Input only number')
       end
       it 'phone_numberが、12桁以上では登録できない' do
-        @purchase_information.phone_number = 111_111_111_111
+        @purchase_information.phone_number = '111_111_111_111'
         @purchase_information.valid?
         expect(@purchase_information.errors.full_messages).to include('Phone number Input only number')
       end
