@@ -66,7 +66,7 @@
 ### Association
 - belongs_to :purchase_record
 
-## comments
+## messages
 
 | Column | Type       | Options           |
 | ----   | ---------- | ----------------- |
